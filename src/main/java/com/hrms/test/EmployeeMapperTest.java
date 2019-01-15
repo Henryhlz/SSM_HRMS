@@ -2,6 +2,7 @@ package com.hrms.test;
 
 import com.hrms.bean.Employee;
 import com.hrms.mapper.EmployeeMapper;
+import com.hrms.util.CreateGUID;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +33,7 @@ public class EmployeeMapperTest {
      */
     @Test
     public void insertOneTest(){
-        Employee employee = new Employee(1, "aa", "aa@qq.com", "男", 2);
+        Employee employee = new Employee(CreateGUID.createGuId(), "aa", "aa@qq.com", "男", "");
         int res = employeeMapper.insertOne(employee);
         System.out.println(res);
     }
@@ -43,36 +44,35 @@ public class EmployeeMapperTest {
     @Test
     public void insertEmpsBatchTest(){
         EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
-        for (int i = 1; i < 200; i++) {
+        for (int i = 1; i < 50; i++) {
             String uid = UUID.randomUUID().toString().substring(0, 5);
-            employeeMapper.insertOne(new Employee(i, "name_"+uid, uid+"@qq.com",  i%2==0? "F":"M", i%6+1));
-
+            employeeMapper.insertOne(new Employee(CreateGUID.createGuId(), "name_"+uid, uid+"@qq.com",  i%2==0? "F":"M", ""));
         }
     }
 
     @Test
     public void updateOneByIdTest(){
         Employee employee =
-                new Employee(1, "aa", "aa@qq.com", "女", 3);
-        int res = employeeMapper.updateOneById(1, employee);
+                new Employee("60b2b1a73a7042e992babe675680917e", "aa", "aa@qq.com", "女", "");
+        int res = employeeMapper.updateOneById("60b2b1a73a7042e992babe675680917e", employee);
         System.out.println(res);
     }
 
     @Test
     public void selectOneByIdTest(){
-        Employee employee = employeeMapper.selectOneById(1);
+        Employee employee = employeeMapper.selectOneById("60b2b1a73a7042e992babe675680917e");
         System.out.println(employee);
     }
 
     @Test
     public void selectOneByNameTest(){
-        Employee employee = employeeMapper.selectOneByName("name_65083");
+        Employee employee = employeeMapper.selectOneByName("aa");
         System.out.println(employee);
     }
 
     @Test
     public void selectWithDeptByIdTest(){
-        Employee employee = employeeMapper.selectWithDeptById(2);
+        Employee employee = employeeMapper.selectWithDeptById("60b2b1a73a7042e992babe675680917e");
         System.out.println(employee);
     }
 
@@ -92,7 +92,7 @@ public class EmployeeMapperTest {
 
     @Test
     public void deleteOneByIdTest(){
-        int res = employeeMapper.deleteOneById(201);
+        int res = employeeMapper.deleteOneById("");
         System.out.println(res);
 
     }

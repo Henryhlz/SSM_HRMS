@@ -5,15 +5,15 @@ package com.hrms.bean;
  * @date 2018/3/5.
  */
 public class Department {
-    private Integer deptId;
+    private String deptId;
     private String deptLeader;
     private String deptName;
 
-    public Integer getDeptId() {
+    public String getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(Integer deptId) {
+    public void setDeptId(String deptId) {
         this.deptId = deptId;
     }
 
@@ -36,7 +36,7 @@ public class Department {
     public Department() {
     }
 
-    public Department(Integer deptId, String deptLeader, String deptName) {
+    public Department(String deptId, String deptLeader, String deptName) {
         this.deptId = deptId;
         this.deptLeader = deptLeader;
         this.deptName = deptName;

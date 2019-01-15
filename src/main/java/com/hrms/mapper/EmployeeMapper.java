@@ -19,11 +19,11 @@ public interface EmployeeMapper {
      * ================================= 删除 ============================================
      */
     @Delete({"DELETE FROM", TABLE_NAME, "WHERE emp_id = #{empId}"})
-    int deleteOneById(@Param("empId") Integer empId);
+    int deleteOneById(@Param("empId") String empId);
     /**
      * ================================= 修改 ============================================
      */
-    int updateOneById(@Param("empId") Integer empId,
+    int updateOneById(@Param("empId") String empId,
                       @Param("employee") Employee employee);
     /**
      * =================================新增============================================
@@ -38,10 +38,10 @@ public interface EmployeeMapper {
     /**
      * =================================查询============================================
      */
-    Employee selectOneById(@Param("empId") int empId);
+    Employee selectOneById(@Param("empId") String empId);
     Employee selectOneByName(@Param("empName") String empName);
     //查询带有部门信息的Employee
-    Employee selectWithDeptById(@Param("empId") Integer empId);
+    Employee selectWithDeptById(@Param("empId") String empId);
 
     /**
      * 分页查询

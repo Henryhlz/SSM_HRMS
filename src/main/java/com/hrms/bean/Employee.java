@@ -5,19 +5,19 @@ package com.hrms.bean;
  * @date 2018/3/5.
  */
 public class Employee {
-    private Integer empId;
+    private String empId;
     private String empName;
     private String empEmail;
     private String gender;
-    private Integer departmentId;
+    private String departmentId;
 
     private Department department;
 
-    public Integer getEmpId() {
+    public String getEmpId() {
         return empId;
     }
 
-    public void setEmpId(Integer empId) {
+    public void setEmpId(String empId) {
         this.empId = empId;
     }
 
@@ -45,11 +45,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public Integer getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(Integer departmentId) {
+    public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -67,7 +67,7 @@ public class Employee {
 
     public Employee() {
     }
-    public Employee(Integer empId, String empName, String empEmail, String gender, Integer departmentId) {
+    public Employee(String empId, String empName, String empEmail, String gender, String departmentId) {
         this.empId = empId;
         this.empName = empName;
         this.empEmail = empEmail;

@@ -28,9 +28,9 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/deleteEmp/{empId}", method = RequestMethod.DELETE)
     @ResponseBody
-    public JsonMsg deleteEmp(@PathVariable("empId") Integer empId){
+    public JsonMsg deleteEmp(@PathVariable("empId") String empId){
         int res = 0;
-        if (empId > 0){
+        if (!empId.isEmpty()){
             res = employeeService.deleteEmpById(empId);
         }
         if (res != 1){
@@ -47,7 +47,7 @@ public class EmployeeController {
      */
     @RequestMapping(value ="/updateEmp/{empId}", method = RequestMethod.PUT)
     @ResponseBody
-    public JsonMsg updateEmp(@PathVariable("empId") Integer empId,  Employee employee){
+    public JsonMsg updateEmp(@PathVariable("empId") String empId,  Employee employee){
         int res = employeeService.updateEmpById(empId, employee);
         if (res != 1){
             return JsonMsg.fail().addInfo("emp_update_error", "更改异常");
@@ -113,7 +113,7 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/getEmpById/{empId}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonMsg getEmpById(@PathVariable("empId") Integer empId){
+    public JsonMsg getEmpById(@PathVariable("empId") String empId){
         Employee employee = employeeService.getEmpById(empId);
         if (employee != null){
             return JsonMsg.success().addInfo("employee", employee);

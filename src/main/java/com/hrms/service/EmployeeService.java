@@ -23,12 +23,12 @@ public class EmployeeService {
     public List<Employee> getEmpList(Integer offser, Integer limit){
         return employeeMapper.selectByLimitAndOffset(offser, limit);
     }
-    public Employee getEmpById(Integer empId){
+    public Employee getEmpById(String empId){
         return employeeMapper.selectOneById(empId);
     }
     public Employee getEmpByName(String empName){return employeeMapper.selectOneByName(empName);};
-    public int updateEmpById(Integer empId, Employee employee){return employeeMapper.updateOneById(empId, employee);}
-    public int deleteEmpById(Integer empId){
+    public int updateEmpById(String empId, Employee employee){return employeeMapper.updateOneById(empId, employee);}
+    public int deleteEmpById(String empId){
         return employeeMapper.deleteOneById(empId);
     }
     public int addEmp(Employee employee){

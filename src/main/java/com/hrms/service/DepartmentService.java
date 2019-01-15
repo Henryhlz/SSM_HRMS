@@ -16,10 +16,10 @@ public class DepartmentService {
     @Autowired
     DepartmentMapper departmentMapper;
 
-    public int deleteDeptById(Integer deptId){
+    public int deleteDeptById(String deptId){
         return departmentMapper.deleteDeptById(deptId);
     }
-    public int updateDeptById(Integer deptId, Department department){
+    public int updateDeptById(String deptId, Department department){
         return departmentMapper.updateDeptById(deptId, department);
     }
     public int addDept(Department department){
@@ -31,7 +31,7 @@ public class DepartmentService {
     public List<Department> getDeptList(Integer offset, Integer limit){
         return departmentMapper.selectDeptsByLimitAndOffset(offset, limit);
     };
-    public Department getDeptById(Integer deptId){
+    public Department getDeptById(String deptId){
         return departmentMapper.selectOneById(deptId);
     }
     public Department getDeptByName(String deptName){

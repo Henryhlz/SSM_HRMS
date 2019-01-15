@@ -1,5 +1,7 @@
+package com.hrms.test;
 import com.hrms.bean.Department;
 import com.hrms.mapper.DepartmentMapper;
+import com.hrms.util.CreateGUID;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +22,28 @@ public class DepartmentMapperTest {
 
     @Test
     public void insertDeptTest(){
-        Department department = new Department(null, "黎明3", "测试部");
+
+        Department department = new Department(CreateGUID.createGuId(), "aa", "测试部");
         int res = departmentMapper.insertDept(department);
         System.out.println(res);
     }
 
     @Test
     public void updateDeptTest(){
-        Department department = new Department(null, "Tomsom", "研发部");
-        int res = departmentMapper.updateDeptById(1, department);
+        Department department = new Department("f7aad996f1c6428aad69690f7afbcfa3", "name_cbd8f", "研发部");
+        int res = departmentMapper.updateDeptById("f7aad996f1c6428aad69690f7afbcfa3", department);
         System.out.println(res);
     }
 
     @Test
     public void deleteDeptTest(){
-        int res = departmentMapper.deleteDeptById(7);
+        int res = departmentMapper.deleteDeptById("");
         System.out.println(res);
     }
 
     @Test
     public void selectOneByIdTest(){
-        Department department = departmentMapper.selectOneById(1);
+        Department department = departmentMapper.selectOneById("");
         System.out.println(department);
     }
 

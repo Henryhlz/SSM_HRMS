@@ -28,9 +28,9 @@ public class DepartmentController {
      */
     @RequestMapping(value = "/delDept/{deptId}", method = RequestMethod.DELETE)
     @ResponseBody
-    public JsonMsg deleteDept(@PathVariable("deptId") Integer deptId){
+    public JsonMsg deleteDept(@PathVariable("deptId") String deptId){
         int res = 0;
-        if (deptId > 0){
+        if (!deptId.isEmpty()){
             res = departmentService.deleteDeptById(deptId);
         }
         if (res != 1){
@@ -47,10 +47,10 @@ public class DepartmentController {
      */
     @RequestMapping(value = "/updateDept/{deptId}", method = RequestMethod.PUT)
     @ResponseBody
-    public JsonMsg updateDeptById(@PathVariable("deptId") Integer deptId, Department department){
+    public JsonMsg updateDeptById(@PathVariable("deptId") String deptId, Department department){
 
         int res = 0;
-        if (deptId > 0){
+        if (!deptId.isEmpty()){
             res = departmentService.updateDeptById(deptId, department);
         }
         if (res != 1){
@@ -98,9 +98,9 @@ public class DepartmentController {
 
     @RequestMapping(value = "/getDeptById/{deptId}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonMsg getDeptById(@PathVariable("deptId") Integer deptId){
+    public JsonMsg getDeptById(@PathVariable("deptId") String deptId){
         Department department = null;
-        if (deptId > 0){
+        if (!deptId.isEmpty()){
             department = departmentService.getDeptById(deptId);
         }
         if (department != null){

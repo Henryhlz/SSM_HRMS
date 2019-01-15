@@ -22,12 +22,12 @@ public interface DepartmentMapper {
      * =================================删除============================================
      */
     @Delete({"DELETE FROM", TABLE_NAME, "WHERE dept_id=#{deptId}"})
-    int deleteDeptById(@Param("deptId") Integer deptId);
+    int deleteDeptById(@Param("deptId") String deptId);
 
     /**
      * =================================更改============================================
      */
-    int updateDeptById(@Param("deptId") Integer deptId,
+    int updateDeptById(@Param("deptId") String deptId,
                        @Param("department") Department department);
 
     /**
@@ -41,7 +41,7 @@ public interface DepartmentMapper {
      * =================================查询============================================
      */
     @Select({"SELECT", SELECT_FIELDS, "FROM", TABLE_NAME, "WHERE dept_id=#{deptId}" })
-    Department selectOneById(@Param("deptId") Integer deptId);
+    Department selectOneById(@Param("deptId") String deptId);
     @Select({"SELECT", SELECT_FIELDS, "FROM", TABLE_NAME, "WHERE dept_leader=#{deptLeader}" })
     Department selectOneByLeader(@Param("deptLeader") String deptLeader);
     @Select({"SELECT", SELECT_FIELDS, "FROM", TABLE_NAME, "WHERE dept_name=#{deptName}" })
