@@ -12,7 +12,7 @@ import java.util.List;
 public interface DepartmentMapper {
 
     String TABLE_NAME = "tbl_dept";
-    String INSERT_FIELDS = "dept_name, dept_leader";
+    String INSERT_FIELDS = "dept_id, dept_name, dept_leader";
     String SELECT_FIELDS = "dept_id as 'deptId', " +
             "dept_name as 'deptName', " +
             "dept_leader as 'deptLeader'";
@@ -34,7 +34,7 @@ public interface DepartmentMapper {
      * =================================新增============================================
      */
     @Insert({"INSERT INTO",TABLE_NAME, "(", INSERT_FIELDS ,") " +
-            "VALUES(#{department.deptName}, #{department.deptLeader})" })
+            "VALUES(#{department.deptId},#{department.deptName}, #{department.deptLeader})"})
     int insertDept(@Param("department") Department department);
 
     /**

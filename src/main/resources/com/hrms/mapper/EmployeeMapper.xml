@@ -23,7 +23,7 @@
         </association>
     </resultMap>
 
-    <select id="selectOneById" parameterType="java.lang.Integer" resultType="com.hrms.bean.Employee">
+    <select id="selectOneById" parameterType="String" resultType="com.hrms.bean.Employee">
         SELECT
         emp_id empId, emp_name empName, emp_email empEmail, gender, department_id departmentId
         FROM
@@ -41,7 +41,7 @@
         emp_name = #{empName}
     </select>
 
-    <select id="selectWithDeptById" parameterType="Integer"  resultMap="withDeptResultMap">
+    <select id="selectWithDeptById" parameterType="String" resultMap="withDeptResultMap">
         SELECT
         <include refid="select_withdept_fields"/>
         FROM
@@ -71,8 +71,8 @@
         SET
         emp_email = #{employee.empEmail, jdbcType = VARCHAR},
         gender = #{employee.gender, jdbcType = VARCHAR},
-        department_id = #{employee.departmentId, jdbcType = INTEGER}
+        department_id = #{employee.departmentId, jdbcType = VARCHAR}
         WHERE
-        emp_id = #{empId, jdbcType = INTEGER}
+        emp_id = #{empId, jdbcType = VARCHAR}
     </update>
 </mapper>

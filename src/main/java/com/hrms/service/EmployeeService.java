@@ -23,7 +23,8 @@ public class EmployeeService {
     public List<Employee> getEmpList(Integer offser, Integer limit){
         return employeeMapper.selectByLimitAndOffset(offser, limit);
     }
-    public Employee getEmpById(String empId){
+
+    public Employee getEmpById(String empId) {
         return employeeMapper.selectOneById(empId);
     }
     public Employee getEmpByName(String empName){return employeeMapper.selectOneByName(empName);};

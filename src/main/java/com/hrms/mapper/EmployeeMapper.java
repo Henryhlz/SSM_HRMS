@@ -12,8 +12,7 @@ import java.util.List;
 public interface EmployeeMapper {
 
     String TABLE_NAME = "tbl_emp";
-    String INSERT_FIELDS = "emp_name, emp_email, gender, department_id";
-    String SELECT_FIELDS = "emp_id, " + INSERT_FIELDS;
+    String INSERT_SELECT = "emp_id, emp_name, emp_email, gender, department_id";
 
     /**
      * ================================= 删除 ============================================
@@ -28,8 +27,9 @@ public interface EmployeeMapper {
     /**
      * =================================新增============================================
      */
-    @Insert({"INSERT INTO", TABLE_NAME, "(",INSERT_FIELDS,") " +
-                    "VALUES(#{empName}, " +
+    @Insert({"INSERT INTO", TABLE_NAME, "(", INSERT_SELECT, ") " +
+            "VALUES(#{empId}, " +
+            "#{empName}, " +
                     "#{empEmail}, " +
                     "#{gender}, " +
                     "#{departmentId})"})
