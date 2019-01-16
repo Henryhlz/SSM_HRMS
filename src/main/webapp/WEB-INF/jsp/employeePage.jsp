@@ -47,6 +47,7 @@
                                 <td>
                                     <a href="#" role="button" class="btn btn-primary emp_edit_btn" data-toggle="modal" data-target=".emp-update-modal">编辑</a>
                                     <a href="#" role="button" class="btn btn-danger emp_delete_btn">删除</a>
+                                    <input type="hidden" id="${emp.empId}" value="${emp.department.deptId}"/>
                                 </td>
                             </tr>
                         </c:forEach>

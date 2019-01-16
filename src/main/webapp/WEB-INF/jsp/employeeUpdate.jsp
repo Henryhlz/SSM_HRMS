@@ -63,8 +63,9 @@
 <script type="text/javascript">
     <!-- ==========================员工修改操作=================================== -->
     $(".emp_edit_btn").click(function () {
-        //1 获取点击修改员工的id与name;
+        //1 获取点击修改员工的id与name和部门id;
         var updateEmpId = $(this).parent().parent().find("td:eq(0)").text();
+        var updateDepId = $("#" + updateEmpId).val();
 
         //2 根据id或name查询出对应员工信息进行回显；
         $.ajax({
@@ -88,9 +89,25 @@
             type:"GET",
             success:function (result) {
                 if (result.code == 100){
+                    //清空内容
+                    $("#update_department").empty();
+                    //重新添加
                     $.each(result.extendInfo.departmentList, function () {
-                        var optEle = $("<option></option>").append(this.deptName).attr("value", this.deptId);
-                        optEle.appendTo("#update_department");
+                        //方法1
+                        // if(this.deptId==updateEmpId){
+                        //     $('#update_department').append('<option value="'+this.deptId+'" selected="selected">'+this.deptName+'</option>');
+                        // }else{
+                        //     $('#update_department').append('<option value="'+this.deptId+'">'+this.deptName+'</option>');
+                        // }
+                        //方法2
+                        var optEle = "";
+                        if (this.deptId == updateDepId) {
+                            optEle = $("<option></option>").append(this.deptName).attr("value", this.deptId).attr("selected", true);
+                        } else {
+                            optEle = $("<option></option>").append(this.deptName).attr("value", this.deptId);
+                        }
+                        $("#update_department").append(optEle);
+                        //optEle.appendTo("#update_department");
                     });
                 }
             }
