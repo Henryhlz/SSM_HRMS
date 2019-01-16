@@ -2,6 +2,7 @@ package com.hrms.controller;
 
 import com.hrms.bean.Employee;
 import com.hrms.service.EmployeeService;
+import com.hrms.util.CreateGUID;
 import com.hrms.util.JsonMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -98,6 +99,7 @@ public class EmployeeController {
     @RequestMapping(value = "/addEmp", method = RequestMethod.POST)
     @ResponseBody
     public JsonMsg addEmp(Employee employee){
+        employee.setEmpId(CreateGUID.createGuId());
         int res = employeeService.addEmp(employee);
         if (res == 1){
             return JsonMsg.success();

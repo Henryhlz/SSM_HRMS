@@ -66,6 +66,8 @@
     //=======0 点击 员工新增按钮，发送AJAX请求查询部门列表信息，弹出模态框，
     // 将查询得到的部门列表信息显示在对应模态框中部门信息处。=============================
     $(".emp_add_btn").click(function () {
+        //select标签清空内容
+        $("#add_department").empty();
 
         $.ajax({
             url:"/hrms/dept/getDeptName",

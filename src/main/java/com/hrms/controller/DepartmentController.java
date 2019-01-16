@@ -2,6 +2,7 @@ package com.hrms.controller;
 
 import com.hrms.bean.Department;
 import com.hrms.service.DepartmentService;
+import com.hrms.util.CreateGUID;
 import com.hrms.util.JsonMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,6 +68,7 @@ public class DepartmentController {
     @RequestMapping(value = "/addDept", method = RequestMethod.PUT)
     @ResponseBody
     public JsonMsg addDept(Department department){
+        department.setDeptId(CreateGUID.createGuId());
         int res = departmentService.addDept(department);
         if (res != 1){
             return JsonMsg.fail().addInfo("add_dept_error", "添加异常！");
