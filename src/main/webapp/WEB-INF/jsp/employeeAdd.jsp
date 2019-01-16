@@ -47,6 +47,7 @@
                                    <%-- <option value="1">CEO</option>--%>
                                 </select>
                             </div>
+                            <span id="helpBlock_add_department" class="help-block"></span>
                         </div>
                     </div>
                 </form>
@@ -74,6 +75,7 @@
             type:"GET",
             success:function (result) {
                 if (result.code == 100){
+                    $("#add_department").append($("<option></option>").append("请选择").attr("value", "请选择").attr("selected", true));
                     $.each(result.extendInfo.departmentList, function () {
                         var optionEle = $("<option></option>").append(this.deptName).attr("value", this.deptId);
                         optionEle.appendTo("#add_department");
@@ -124,6 +126,7 @@
         //================2 对输入的姓名和邮箱格式进行验证===============
         var inputName = $("#add_inputName").val();
         var inputEmail = $("#add_inputEmail").val();
+        var optDep = $("#add_department").val();
         //验证格式。姓名：2-5位中文或6-16位英文和数字组合；
         var regName = /(^[a-zA-Z0-9_-]{3,16}$)|(^[\u2E80-\u9FFF]{2,5})/;
         var regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
@@ -151,6 +154,18 @@
             $("#add_inputEmail").parent().parent().removeClass("has-error");
             $("#add_inputName").parent().parent().addClass("has-success");
             $("#helpBlock_add_inputEmail").hide();
+        }
+        if (optDep == "请选择") {
+            //输入框变红
+            $("#add_department").parent().parent().addClass("has-error");
+            //输入框下面显示红色提示信息
+            $("#helpBlock_add_department").text("请选择部门！");
+            return false;
+        } else {
+            //移除格式
+            $("#add_department").parent().parent().removeClass("has-error");
+            $("#add_department").parent().parent().addClass("has-success");
+            $("#helpBlock_add_department").hide();
         }
 
 
