@@ -12,7 +12,7 @@ import java.util.List;
 public interface EmployeeMapper {
 
     String TABLE_NAME = "tbl_emp";
-    String INSERT_SELECT = "emp_id, emp_name, emp_email, gender, department_id";
+    String INSERT_SELECT = "emp_id, emp_name, emp_email, gender, pwd, department_id";
 
     /**
      * ================================= 删除 ============================================
@@ -32,6 +32,7 @@ public interface EmployeeMapper {
             "#{empName}, " +
                     "#{empEmail}, " +
                     "#{gender}, " +
+            "#{pwd}, " +
                     "#{departmentId})"})
     int insertOne(Employee employee);
 
@@ -40,6 +41,8 @@ public interface EmployeeMapper {
      */
     Employee selectOneById(@Param("empId") String empId);
     Employee selectOneByName(@Param("empName") String empName);
+
+    Employee selectOneByInfo(@Param("employee") Employee employee);
     //查询带有部门信息的Employee
     Employee selectWithDeptById(@Param("empId") String empId);
 

@@ -33,7 +33,7 @@ public class EmployeeMapperTest {
      */
     @Test
     public void insertOneTest(){
-        Employee employee = new Employee(CreateGUID.createGuId(), "aa", "aa@qq.com", "男", "");
+        Employee employee = new Employee(CreateGUID.createGuId(), "aa", "aa@qq.com", "男", "", "");
         int res = employeeMapper.insertOne(employee);
         System.out.println(res);
     }
@@ -46,14 +46,14 @@ public class EmployeeMapperTest {
         EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
         for (int i = 1; i < 50; i++) {
             String uid = UUID.randomUUID().toString().substring(0, 5);
-            employeeMapper.insertOne(new Employee(CreateGUID.createGuId(), "name_"+uid, uid+"@qq.com",  i%2==0? "F":"M", ""));
+            employeeMapper.insertOne(new Employee(CreateGUID.createGuId(), "name_" + uid, uid + "@qq.com", i % 2 == 0 ? "F" : "M", "", ""));
         }
     }
 
     @Test
     public void updateOneByIdTest(){
         Employee employee =
-                new Employee("60b2b1a73a7042e992babe675680917e", "aa", "aa@qq.com", "女", "");
+                new Employee("60b2b1a73a7042e992babe675680917e", "aa", "aa@qq.com", "女", "", "");
         int res = employeeMapper.updateOneById("60b2b1a73a7042e992babe675680917e", employee);
         System.out.println(res);
     }

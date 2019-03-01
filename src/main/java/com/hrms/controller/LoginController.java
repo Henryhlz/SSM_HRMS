@@ -1,6 +1,9 @@
 package com.hrms.controller;
 
+import com.hrms.bean.Employee;
+import com.hrms.service.EmployeeService;
 import com.hrms.util.JsonMsg;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping(value = "/hrms")
 public class LoginController {
+
+    @Autowired
+    EmployeeService employeeService;
 
     /**
      * 登录：跳转到登录页面
@@ -36,7 +42,8 @@ public class LoginController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         System.out.println(username + password);
-        if (!"admin1234".equals(username + password)){
+        Employee employee = employeeService.getEmpByName(username);
+        if (!password.equals(employee.getPwd())) {
             return JsonMsg.fail().addInfo("login_error", "输入账号用户名与密码不匹配，请重新输入！");
         }
         return JsonMsg.success();

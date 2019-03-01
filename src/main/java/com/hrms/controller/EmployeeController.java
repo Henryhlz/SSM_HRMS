@@ -155,6 +155,12 @@ public class EmployeeController {
         return mv;
     }
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    public String test() {
+//        JsonMsg.success().addInfo("testInfo", "测试跳转页面");
+        return "test";
+    }
 
 
 

@@ -3,6 +3,7 @@ package com.hrms.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author GenshenWang.nomico
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class TestController {
 
     @RequestMapping(value = "/test",  method = RequestMethod.GET)
+    @ResponseBody
     public String index(){
         System.out.println("测试。。。");
-        return "main";
+        return "test";
     }
 }

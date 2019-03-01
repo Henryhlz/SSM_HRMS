@@ -10,6 +10,7 @@ public class Employee {
     private String empEmail;
     private String gender;
     private String departmentId;
+    private String pwd;
 
     private Department department;
 
@@ -45,6 +46,14 @@ public class Employee {
         this.gender = gender;
     }
 
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
     public String getDepartmentId() {
         return departmentId;
     }
@@ -61,17 +70,20 @@ public class Employee {
                 ", empEmail='" + empEmail + '\'' +
                 ", gender='" + gender + '\'' +
                 ", departmentId=" + departmentId + '\'' +
+                ", pwd=" + pwd + '\'' +
                 ", department=" + department +
                 '}';
     }
 
     public Employee() {
     }
-    public Employee(String empId, String empName, String empEmail, String gender, String departmentId) {
+
+    public Employee(String empId, String empName, String empEmail, String gender, String pwd, String departmentId) {
         this.empId = empId;
         this.empName = empName;
         this.empEmail = empEmail;
         this.gender = gender;
+        this.pwd = pwd;
         this.departmentId = departmentId;
     }
 
