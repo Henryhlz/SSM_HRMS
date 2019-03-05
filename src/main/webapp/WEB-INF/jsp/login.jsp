@@ -29,10 +29,12 @@
                     <form role="form" action="#" method="post" id="login_form">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="用户名:admin" name="username" autofocus>
+                                <input class="form-control" placeholder="用户名:admin" name="username" value="name_5b53e"
+                                       autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="密码:1234" name="password" type="password" value="">
+                                <input class="form-control" placeholder="密码:1234" name="password" type="password"
+                                       value="123456">
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <a href="javascript:void(0)" class="btn btn-lg btn-success btn-block" id='login_btn'>登录</a>

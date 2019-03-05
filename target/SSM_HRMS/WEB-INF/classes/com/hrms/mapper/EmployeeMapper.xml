@@ -4,10 +4,10 @@
 <mapper namespace="com.hrms.mapper.EmployeeMapper">
     <sql id="table_name">tbl_emp</sql>
     <sql id="select_fields">
-      emp_id, emp_name, emp_email, gender, department_id
+      emp_id, emp_name, emp_email, gender, pwd, department_id
     </sql>
     <sql id="select_withdept_fields">
-        emp_id, emp_name, emp_email, gender, department_id, dept_id, dept_leader, dept_name
+        emp_id, emp_name, emp_email, gender, pwd, department_id, dept_id, dept_leader, dept_name
     </sql>
 
     <resultMap id="withDeptResultMap" type="com.hrms.bean.Employee">
@@ -15,6 +15,7 @@
         <result column="emp_name" property="empName"></result>
         <result column="emp_email" property="empEmail"></result>
         <result column="gender" property="gender"></result>
+        <result column="pwd" property="pwd"></result>
         <result column="department_id" property="departmentId"></result>
         <association property="department" column="department_id" javaType="com.hrms.bean.Department">
             <id column="dept_id" property="deptId"></id>
@@ -25,7 +26,7 @@
 
     <select id="selectOneById" parameterType="String" resultType="com.hrms.bean.Employee">
         SELECT
-        emp_id empId, emp_name empName, emp_email empEmail, gender, department_id departmentId
+        emp_id empId, emp_name empName, emp_email empEmail, gender, pwd, department_id departmentId
         FROM
         <include refid="table_name"/>
         WHERE
@@ -34,11 +35,32 @@
 
     <select id="selectOneByName" parameterType="String" resultType="com.hrms.bean.Employee">
         SELECT
-        emp_id empId, emp_name empName, emp_email empEmail, gender, department_id departmentId
+        emp_id empId, emp_name empName, emp_email empEmail, gender, pwd, department_id departmentId
         FROM
         <include refid="table_name"/>
         WHERE
         emp_name = #{empName}
+    </select>
+
+    <select id="selectOneByInfo" parameterType="com.hrms.bean.Employee" resultType="com.hrms.bean.Employee">
+        SELECT
+        emp_id empId, emp_name empName, emp_email empEmail, gender, pwd, department_id departmentId
+        FROM
+        <include refid="table_name"/>
+        <where>
+            <if test="employee.empId != null and employee.empId != '' ">
+                and emp_id = #{employee.empId}
+            </if>
+            <if test="employee.empName != null and employee.empName != '' ">
+                and emp_name = #{employee.empName}
+            </if>
+            <if test="employee.empEmail != null and employee.empEmail != '' ">
+                and emp_email = #{employee.empEmail}
+            </if>
+            <if test="employee.pwd != null and employee.pwd != '' ">
+                and pwd = #{employee.pwd}
+            </if>
+        </where>
     </select>
 
     <select id="selectWithDeptById" parameterType="String" resultMap="withDeptResultMap">
