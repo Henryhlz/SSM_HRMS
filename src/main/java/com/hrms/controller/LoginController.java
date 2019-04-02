@@ -39,8 +39,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/dologin", method = RequestMethod.POST)
     @ResponseBody
-    public JsonMsg dologin(String username, String password) {
-//        HttpServletRequest request
+    public JsonMsg dologin(String username, String password) {//        HttpServletRequest request
 //        String username = request.getParameter("username");
 //        String password = request.getParameter("password");
         System.out.println(username + password);

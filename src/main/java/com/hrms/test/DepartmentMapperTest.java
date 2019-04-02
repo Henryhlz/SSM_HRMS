@@ -55,7 +55,7 @@ public class DepartmentMapperTest {
 
     @Test
     public void selectOneByNameTest(){
-        Department department = departmentMapper.selectOneByName("CEO");
+        Department department = departmentMapper.selectOneByName("技术部");
         System.out.println(department);
     }
 

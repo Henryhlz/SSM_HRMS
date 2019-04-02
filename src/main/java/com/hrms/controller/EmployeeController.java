@@ -100,6 +100,9 @@ public class EmployeeController {
     @ResponseBody
     public JsonMsg addEmp(Employee employee){
         employee.setEmpId(CreateGUID.createGuId());
+        if (employee.getPwd().isEmpty()) {
+            employee.setPwd("123456");
+        }
         int res = employeeService.addEmp(employee);
         if (res == 1){
             return JsonMsg.success();
